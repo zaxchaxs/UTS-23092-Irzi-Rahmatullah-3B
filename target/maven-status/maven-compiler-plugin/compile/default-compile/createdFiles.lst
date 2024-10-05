@@ -1,8 +1,11 @@
 RoomHandlers\Room.class
 Users\User.class
+utils\RoomChecks.class
+Interfaces\MenuInterface.class
 Users\Admin.class
+utils\DefaultRooms.class
+RoomHandlers\MenuHandlers.class
 Interfaces\UserInterface.class
 Hotel\index.class
-RoomHandlers\Reservation.class
 RoomHandlers\Booking.class
 Users\Customer.class

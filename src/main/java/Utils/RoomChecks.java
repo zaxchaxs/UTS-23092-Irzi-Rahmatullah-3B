@@ -9,70 +9,63 @@ package Utils;
  * @author Irzi Rhmtllh
  */
 import RoomHandlers.Room;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class RoomChecks {
-    private List<Room> rooms;
+    Scanner scanner = new Scanner(System.in);
     
-    public RoomChecks() {
-        rooms = new ArrayList<>();
-    };
-    
-    public void checkAllRooms() {
+    public void checkAllRooms(List<Room> rooms) {
         System.out.println("\n=================================");
         System.out.println("|\tHotel Transylvania\t|");
         System.out.println("=================================");
         
-        System.out.println("|\tKamar Eksklusif\t\t|");
+        System.out.println("|\tList Kamar\t\t|");
+        System.out.println("=================================");
+        
+        for(Room room: rooms) {
+            room.displayRoomDetails();
+            System.out.println("");
+        }
+        System.out.print("Tekan enter untuk lanjut");
+        scanner.nextLine();
+    };
+    
+    public void checkSingleRoom(List<Room> rooms) {
+        System.out.println("\n=================================");
+        System.out.println("|\tHotel Transylvania\t|");
+        System.out.println("=================================");
+        System.out.println("|\tKamar Single\t\t|");
         System.out.println("=================================");
         for(Room room: rooms) {
-            if(room.getRoomType() == "Eksklusif") {
+            if("Single".equals(room.getRoomType())) {
                 room.displayRoomDetails();
                 System.out.println("");
             }
         }
         
-        System.out.println("=================================");
-        System.out.println("|\tKamar Normal\t\t|");
-        System.out.println("=================================");
-        for(Room room: rooms) {
-            if(room.getRoomType() == "Normal") {
-                room.displayRoomDetails();
-                System.out.println("");
-            }
-        }    
-    };
+        System.out.print("Tekan enter untuk lanjut");
+        scanner.nextLine();
+    }
     
-    public void checkEksklusifRoom() {
+    public void checkDoubleRoom(List<Room> rooms) {
         System.out.println("\n=================================");
         System.out.println("|\tHotel Transylvania\t|");
         System.out.println("=================================");
-        System.out.println("|\tKamar Eksklusif\t\t|");
+        System.out.println("|\tKamar Double\t\t|");
         System.out.println("=================================");
         for(Room room: rooms) {
-            if(room.getRoomType() == "Eksklusif") {
+            if("Double".equals(room.getRoomType())) {
                 room.displayRoomDetails();
                 System.out.println("");
             }
         }
+        
+        System.out.print("Tekan enter untuk lanjut");
+        scanner.nextLine();
     }
     
-    public void checkNormalRoom() {
-        System.out.println("\n=================================");
-        System.out.println("|\tHotel Transylvania\t|");
-        System.out.println("=================================");
-        System.out.println("|\tKamar Normal\t\t|");
-        System.out.println("=================================");
-        for(Room room: rooms) {
-            if(room.getRoomType() == "Normal") {
-                room.displayRoomDetails();
-                System.out.println("");
-            }
-        }    
-    }
-    
-    public void checkBookedRooms() {
+    public void checkBookedRooms(List<Room> rooms) {
         System.out.println("\n=================================");
         System.out.println("|\tHotel Transylvania\t|");
         System.out.println("=================================");
@@ -83,6 +76,7 @@ public class RoomChecks {
                 System.out.println("");
             }
         }
-        
+        System.out.print("Tekan enter untuk lanjut");
+        scanner.nextLine();        
     }
 }

@@ -11,24 +11,28 @@ package Hotel;
  */
 import RoomHandlers.*;
 import Users.Admin;
+import Utils.DefaultRooms;
 import java.util.Scanner;
 
 public class index {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Reservation reservation = new Reservation();
+        MenuHandlers menuHandler = new MenuHandlers();
         
+        Room room1 = new Room("K001", "Single", 100.0, true);
+        Room room2 = new Room("K002", "Double", 150.0, true);
+        menuHandler.addDefaultRooms(room1);
+        menuHandler.addDefaultRooms(room2);
         
-        Room room1 = new Room("K001", "Eksklusif", 100.0, true);
-        Room room2 = new Room("K002", "Normal", 150.0, true);
-        reservation.addRoom(room1);
-        reservation.addRoom(room2);
+//        // add default rooms
+//        DefaultRooms defRoom = new DefaultRooms();
+//        defRoom.addDefaultRoom();
         
         int loginOptions = displayLoginOutput();
         
         switch(loginOptions) {
             case 1: {
-                adminHandler(input, reservation);
+                adminHandler(input, menuHandler);
                 break;
             }
                 
@@ -42,7 +46,7 @@ public class index {
         }
     }
     
-    private static void adminHandler(Scanner input, Reservation reservation) {
+    private static void adminHandler(Scanner input, MenuHandlers menuHandler) {
         // Contoh username dan password
         String usernameAdmin = "admin123";
         String passwordAdmin = "rahasia123";
@@ -62,30 +66,34 @@ public class index {
         } while (!usernameAdmin.equals(username) || !passwordAdmin.equals(password));
         
         Admin admin = new Admin("Irzi", "Admin");
-        admin.displayMenu();
-        
+
         int menuOptions;
-        System.out.print("Pilihan: ");
-        menuOptions = input.nextInt();
-        
-        switch (menuOptions) {
+        do{
+            admin.displayMenu();
+            System.out.print("Pilihan: ");
+            menuOptions = input.nextInt();
+            switch (menuOptions) {
             case 1:
-                reservation.showAllRooms();
+                menuHandler.showAllRooms();
+                
                 break;
             case 2:
-                reservation.showBookedRooms();
+                menuHandler.showBookedRooms();
                 break;
             case 3: 
-                reservation.showEkslusifRoom();
+                menuHandler.showEksklusifRooms();
                 break;
             case 4:
-                reservation.showNormalRoom();
+                menuHandler.showNormalRooms();
                 break;
             case 5:
-                
+                menuHandler.addRoom();
+                break;
             default:
                 throw new AssertionError();
         }
+        
+        } while (menuOptions > 0);
     }
     
     private static int displayLoginOutput() {

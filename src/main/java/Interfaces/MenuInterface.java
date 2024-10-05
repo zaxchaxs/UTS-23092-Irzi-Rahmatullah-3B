@@ -8,6 +8,11 @@ package Interfaces;
  *
  * @author Irzi Rhmtllh
  */
-public interface UserInterface {
-    void displayMenu();
+public interface MenuInterface {
+    void showAllRooms();
+    void showBookedRooms();
+    void showEksklusifRooms();
+    void showNormalRooms();
+    void addRoom();
+    void deleteRoom();
 }

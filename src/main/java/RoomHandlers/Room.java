@@ -44,7 +44,7 @@ public class Room {
         System.out.println("| Status Kamar: " + (isBooked ? "Tersewa" : "Belum Tersewa"));
         if(isBooked) {
             System.out.println("| Nama Penyewa: " + customerName);
-        }
+        };
     }
     
 }
