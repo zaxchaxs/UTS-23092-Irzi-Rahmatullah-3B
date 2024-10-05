@@ -11,7 +11,6 @@ package Hotel;
  */
 import Users.Admin;
 import java.util.Scanner;
-import utils.Utils;
 
 public class index {
 
@@ -20,11 +19,10 @@ public class index {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Utils utils = new Utils();
         
-        int pilihanLogin = displayLoginOutput();
+        int loginOptions = displayLoginOutput();
         
-        switch(pilihanLogin) {
+        switch(loginOptions) {
             case 1: {
                 adminHandler(input);
                 break;
@@ -63,9 +61,17 @@ public class index {
         Admin admin = new Admin("Irzi", "Admin");
         admin.displayMenu();
         
-        int pilihanMenu;
+        int menuOptions;
         System.out.print("Pilihan: ");
-        pilihanMenu = input.nextInt();
+        menuOptions = input.nextInt();
+        
+        switch (menuOptions) {
+            case 1:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
     
     private static int displayLoginOutput() {
