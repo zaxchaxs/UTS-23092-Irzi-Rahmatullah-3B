@@ -1,6 +1,8 @@
-Interfaces\UserInterface.class
+RoomHandlers\Room.class
 Users\User.class
-Hotel\index.class
 Users\Admin.class
-utils\Utils.class
+Interfaces\UserInterface.class
+Hotel\index.class
+RoomHandlers\Reservation.class
+RoomHandlers\Booking.class
 Users\Customer.class

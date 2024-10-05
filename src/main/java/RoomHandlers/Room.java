@@ -9,12 +9,12 @@ package RoomHandlers;
  * @author Irzi Rhmtllh
  */
 public class Room {
-    private String IdRoom;
+    private String IdRoom, customerName;
     private String type;
     private double priceRoom;
     private boolean isBooked;
     
-    Room(String id, String type, double price, boolean isBooked) {
+    public Room(String id, String type, double price, boolean isBooked) {
         IdRoom = id;
         this.type = type;
         priceRoom = price;
@@ -33,10 +33,18 @@ public class Room {
         return priceRoom;
     }
     
+    public String getRoomType() {
+        return type;
+    }
+    
     public void displayRoomDetails() {
         System.out.println("| ID Kamar: " + IdRoom);
         System.out.println("| Tipe Kamar: " + type);
         System.out.println("| Harga Kamar: " + priceRoom);
+        System.out.println("| Status Kamar: " + (isBooked ? "Tersewa" : "Belum Tersewa"));
+        if(isBooked) {
+            System.out.println("| Nama Penyewa: " + customerName);
+        }
     }
     
 }

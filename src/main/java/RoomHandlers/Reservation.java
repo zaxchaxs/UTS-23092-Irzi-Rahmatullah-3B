@@ -10,6 +10,7 @@ package RoomHandlers;
  */
 
 import RoomHandlers.*;
+import Utils.RoomChecks;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +19,35 @@ public class Reservation {
     
     private List<Room> rooms;
     private List<Booking> bookings;
-
+    
+    RoomChecks checkRooms = new RoomChecks();
     public Reservation() {
         rooms = new ArrayList<>();
         bookings = new ArrayList<>();
     };
+
     
+    //  Method Admin
+
+    public void showAllRooms() {
+        checkRooms.checkAllRooms();
+    };
+    
+    public void showBookedRooms() {
+        checkRooms.checkBookedRooms();
+    }
+    
+    public void showEkslusifRoom() {
+        checkRooms.checkEksklusifRoom();
+    }
+    
+    public void showNormalRoom() {
+        checkRooms.checkNormalRoom();
+    }
+    
+    
+    
+        
     public void addRoom(Room room) {
         rooms.add(room);
     };
@@ -33,11 +57,14 @@ public class Reservation {
         for(Room room : rooms) {
             if(!room.isBooked()) {
                 availableRooms.add(room);
+                room.displayRoomDetails();
             }
+                room.displayRoomDetails();
         };
         
         return availableRooms;
     };
+    
     
 //    public Booking createBooking(String customerName, int roomNumber, int nights) {
 //        for (Room room : rooms) {

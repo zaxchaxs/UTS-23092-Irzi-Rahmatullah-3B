@@ -9,22 +9,26 @@ package Hotel;
  *
  * @author Irzi Rhmtllh
  */
+import RoomHandlers.*;
 import Users.Admin;
 import java.util.Scanner;
 
 public class index {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Reservation reservation = new Reservation();
+        
+        
+        Room room1 = new Room("K001", "Eksklusif", 100.0, true);
+        Room room2 = new Room("K002", "Normal", 150.0, true);
+        reservation.addRoom(room1);
+        reservation.addRoom(room2);
         
         int loginOptions = displayLoginOutput();
         
         switch(loginOptions) {
             case 1: {
-                adminHandler(input);
+                adminHandler(input, reservation);
                 break;
             }
                 
@@ -38,12 +42,11 @@ public class index {
         }
     }
     
-    private static void adminHandler(Scanner input) {
+    private static void adminHandler(Scanner input, Reservation reservation) {
         // Contoh username dan password
         String usernameAdmin = "admin123";
         String passwordAdmin = "rahasia123";
         String username, password;
-        
         do{
             System.out.println("\n\tAnda login sebagai Admin");
             System.out.print("Username (admin123): ");
@@ -67,8 +70,19 @@ public class index {
         
         switch (menuOptions) {
             case 1:
-                
+                reservation.showAllRooms();
                 break;
+            case 2:
+                reservation.showBookedRooms();
+                break;
+            case 3: 
+                reservation.showEkslusifRoom();
+                break;
+            case 4:
+                reservation.showNormalRoom();
+                break;
+            case 5:
+                
             default:
                 throw new AssertionError();
         }

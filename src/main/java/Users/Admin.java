@@ -20,7 +20,7 @@ public class Admin extends User{
     @Override
     public void displayMenu() {
         super.displayMenu();
-        System.out.println("| 1. Cek Ketersediaan Kamar \t|");
+        System.out.println("| 1. Cek Semua Kamar \t\t|");
         System.out.println("| 2. Cek Kamar Tersewa \t\t|");
         System.out.println("| 3. Cek Kamar Eksklusif \t|");
         System.out.println("| 4. Cek Kamar Normal \t\t|");
