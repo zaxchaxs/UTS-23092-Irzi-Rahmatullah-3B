@@ -25,6 +25,10 @@ public class Room {
         this.isBooked = isBooked;
     };
     
+    public String getRoomId() {
+        return IdRoom;
+    };
+    
     public boolean isBooked() {
         return this.isBooked;
     }

@@ -89,6 +89,11 @@ public class index {
             case 5:
                 menuHandler.addRoom();
                 break;
+                
+            case 6:
+                menuHandler.deleteRoom();
+                break;
+                
             default:
                 throw new AssertionError();
         }

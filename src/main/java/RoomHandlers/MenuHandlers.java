@@ -67,7 +67,49 @@ public class MenuHandlers implements MenuInterface{
     };
     
     public void deleteRoom() {
-    
+        
+        String idRoom;
+        System.out.println("\n=================================");
+        System.out.println("|\tHotel Transylvania\t|");
+        System.out.println("=================================");
+        
+        if(rooms.isEmpty()) {
+            System.out.println("| Tidak ada kamar yang terdaftar!");
+            System.out.println("| Tekan enter untuk melanjutkan");
+            scanner.nextLine();
+            return;
+        }
+        
+        System.out.print("| Masukkan ID Kamar yang ingin dihapus: ");
+        idRoom = scanner.nextLine();
+        
+        // Cek apakah id nya ada
+        boolean isRoomExist = false;
+        boolean isRoomBooked = false;
+        for (Room room: rooms) {
+            if(room.getRoomId().equals(idRoom)){
+                isRoomExist = true;
+                isRoomBooked = room.isBooked();
+                System.out.println("| Testing");
+            };
+        };
+        
+        if(!isRoomExist){
+            System.out.println("| Kamar dengan ID " + idRoom + " tidak ditemukan!");
+            System.out.println("| Tekan enter untuk melanjutkan");
+            scanner.nextLine();
+            return;
+        } else  if (isRoomBooked) {
+            System.out.println("| Kamar dengan ID " + idRoom + " sedang tersewa!]\n| Tidak dapat dihapus!");
+            System.out.println("| Tekan enter untuk melanjutkan");
+            scanner.nextLine();
+            return;
+        } else {
+            rooms.removeIf(room -> room.getRoomId().equals(idRoom));
+            System.out.println("| Kamar telah terhapus!");
+            System.out.println("| Tekan enter untuk melanjutkan");
+            scanner.nextLine();
+        }
     }
     
     public List<Room> getAvailableRooms() {

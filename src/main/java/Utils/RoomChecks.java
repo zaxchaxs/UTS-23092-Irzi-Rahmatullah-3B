@@ -20,6 +20,13 @@ public class RoomChecks {
         System.out.println("|\tHotel Transylvania\t|");
         System.out.println("=================================");
         
+        if(rooms.isEmpty()) {
+            System.out.println("| Tidak ada kamar yang terdaftar!");
+            System.out.println("| Tekan enter untuk melanjutkan");
+            scanner.nextLine();
+            return;
+        }
+        
         System.out.println("|\tList Kamar\t\t|");
         System.out.println("=================================");
         
