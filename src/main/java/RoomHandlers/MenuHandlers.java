@@ -28,25 +28,27 @@ public class MenuHandlers implements MenuInterface{
         bookings = new ArrayList<>();
     };
     
-    
-    //  Method Admin
-    
     public void showAllRooms() {
         checkRooms.checkAllRooms(rooms);
     };
-    
     public void showBookedRooms() {
         checkRooms.checkBookedRooms(rooms);
     }
-    
+    public void showAvailabelRooms() {
+        checkRooms.checkAvailableRooms(rooms);
+    }
     public void showEksklusifRooms() {
-        checkRooms.checkSingleRoom(rooms);
+        checkRooms.checkEksklusifRoom(rooms);
     }
-    
+    public boolean showAvailableEksklusifRooms() {
+        return checkRooms.checkEksklusifAvailableRooms(rooms);
+    }
     public void showNormalRooms() {
-        checkRooms.checkDoubleRoom(rooms);
+        checkRooms.checkNormalRoom(rooms);
     }
-        
+    public boolean showAvailableNormalRooms() {
+        return checkRooms.checkNormalAvailableRooms(rooms);
+    }
     public void addRoom() {
         String idRoom, type;
         double price;
@@ -55,9 +57,11 @@ public class MenuHandlers implements MenuInterface{
         System.out.println("|\tHotel Transylvania\t|");
         System.out.println("=================================");
         System.out.println("|\tTambah Kamar\t\t|");
-        System.out.print("| ID Kamar: "); 
+        System.out.print("\t(Enter)");
+        scanner.nextLine();
+        System.out.print("\n| ID Kamar: "); 
         idRoom = scanner.nextLine();
-        System.out.print("| Tipe (Single/Double): "); 
+        System.out.print("| Tipe (Normal/Eksklusif): "); 
         type = scanner.nextLine();
         System.out.print("| Harga: "); 
         price = scanner.nextInt();
@@ -65,7 +69,6 @@ public class MenuHandlers implements MenuInterface{
         Room newRoom = new Room(idRoom, type, price, false);
         rooms.add(newRoom);
     };
-    
     public void deleteRoom() {
         
         String idRoom;
@@ -80,7 +83,9 @@ public class MenuHandlers implements MenuInterface{
             return;
         }
         
-        System.out.print("| Masukkan ID Kamar yang ingin dihapus: ");
+        System.out.print("\t(Enter)");
+        scanner.nextLine();
+        System.out.print("\n| Masukkan ID Kamar yang ingin dihapus: ");
         idRoom = scanner.nextLine();
         
         // Cek apakah id nya ada
@@ -90,7 +95,6 @@ public class MenuHandlers implements MenuInterface{
             if(room.getRoomId().equals(idRoom)){
                 isRoomExist = true;
                 isRoomBooked = room.isBooked();
-                System.out.println("| Testing");
             };
         };
         
@@ -111,19 +115,91 @@ public class MenuHandlers implements MenuInterface{
             scanner.nextLine();
         }
     }
-    
-    public List<Room> getAvailableRooms() {
-        List<Room> availableRooms = new ArrayList<>();
-        for(Room room : rooms) {
-            if(!room.isBooked()) {
-                availableRooms.add(room);
-                room.displayRoomDetails();
-            }
-                room.displayRoomDetails();
-        };
+        public void reserveRoom(String customerName) {
+        int menuChoises;
         
-        return availableRooms;
-    };
+        do {
+            System.out.println("\n=================================");
+            System.out.println("|\tHotel Transylvania\t|");
+            System.out.println("=================================");
+            System.out.println("|\tPilih Jenis Kamar\t|");
+            System.out.println("|1. Normal");
+            System.out.println("|2. Eksklusif");
+            System.out.print("| Pilihan (1/2): ");
+            menuChoises = scanner.nextInt();
+
+            switch (menuChoises) {
+                case 1: {
+                    String idKamar;
+                    int inputPrice;
+                    boolean isAvailable = showAvailableNormalRooms();
+                    if(!isAvailable) {
+                        return;
+                    }
+                    boolean isIdFound = false;
+                    scanner.nextLine();
+                    do{
+                        System.out.print("| Masukkan ID Kamar\n| Yang ingin disewa: ");
+                        idKamar = scanner.nextLine();
+                        for(Room room: rooms) {
+                           if(room.getRoomId().equals(idKamar) && room.isBooked() == false) {
+                               System.out.println("| Harga sewa permalam: " + room.getPrice());
+                               System.out.print("| Berapa malam ingin sewa kamar: ");
+                               inputPrice = scanner.nextInt();
+                               System.out.println("\nBerhasil!");
+                               System.out.println("| Total : " + (inputPrice*room.getPrice()) + "\nPembayaran dilakukan saat checkout!");
+                               room.setBooked(true);
+                               room.setCustomerName(customerName);
+                               isIdFound = true;
+                               scanner.nextLine();
+                               System.out.print("\t(Enter)");
+                               scanner.nextLine();
+                               return;
+                           }
+                        }
+                        System.out.println("| ID Kamar tidak ditemukan!");                    
+                    } while(!isIdFound);
+                    break;
+                }
+
+                case 2: {
+                    String idKamar;
+                    int inputPrice;
+                    boolean isAvailable = showAvailableEksklusifRooms();
+                    if(!isAvailable) {
+                        return;
+                    }
+                    boolean isIdFound = false;
+                    scanner.nextLine();
+                    do{
+                        System.out.print("| Masukkan ID Kamar\n| Yang ingin disewa: ");
+                        idKamar = scanner.nextLine();
+                        for(Room room: rooms) {
+                           if(room.getRoomId().equals(idKamar) && room.isBooked() == false) {
+                               System.out.println("| Harga sewa permalam: " + room.getPrice());
+                               System.out.print("| Berapa lama ingin sewa kamar: ");
+                               inputPrice = scanner.nextInt();
+                               System.out.println("\nBerhasil!");                               
+                               System.out.println("| Total : " + (inputPrice*room.getPrice()) + "\nPembayaran dilakukan saat checkout!");
+                               room.setBooked(true);
+                               room.setCustomerName(customerName);
+                               isIdFound = true;
+                               scanner.nextLine();
+                               System.out.print("\t(Enter)");
+                               scanner.nextLine();
+                               return;
+                           }
+                        }
+                        System.out.println("| ID Kamar tidak ditemukan!");                    
+                    } while(!isIdFound);
+                    break;                
+                }
+                default:
+                    break;
+
+            }        
+        } while (menuChoises > 0 && menuChoises < 3);        
+    }
     
     public void addDefaultRooms(Room room) {
         rooms.add(room);

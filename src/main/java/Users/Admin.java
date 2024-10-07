@@ -22,8 +22,8 @@ public class Admin extends User{
         super.displayMenu();
         System.out.println("| 1. Cek Semua Kamar \t\t|");
         System.out.println("| 2. Cek Kamar Tersewa \t\t|");
-        System.out.println("| 3. Cek Kamar Single \t\t|");
-        System.out.println("| 4. Cek Kamar Double \t\t|");
+        System.out.println("| 3. Cek Kamar Normal \t\t|");
+        System.out.println("| 4. Cek Kamar Eksklusif \t|");
         System.out.println("| 5. Tambah Kamar \t\t|");
         System.out.println("| 6. Hapus Kamar \t\t|");
         System.out.println("| 0. Kembali \t\t\t|");

@@ -24,19 +24,18 @@ public class Room {
     public void setBooked(boolean isBooked) {
         this.isBooked = isBooked;
     };
-    
+    public void setCustomerName(String name) {
+        customerName = name;
+    }
     public String getRoomId() {
         return IdRoom;
     };
-    
     public boolean isBooked() {
         return this.isBooked;
     }
-    
     public double getPrice() {
         return priceRoom;
     }
-    
     public String getRoomType() {
         return type;
     }
